@@ -1,142 +1,144 @@
-# BluePriori - Vulnerability Prioritization Dashboard
+# BluePriori - Dashboard de Priorização de Vulnerabilidades
 
-BluePriori is a full-stack web application for vulnerability management and prioritization. It consists of a Flask-based backend API that processes vulnerability data and a React frontend dashboard that visualizes priority scores by asset type to help users decide which vulnerabilities to address first.
+BluePriori é uma aplicação web full-stack para gerenciamento e priorização de vulnerabilidades. Consiste em uma API backend em Flask que processa dados de vulnerabilidades e um dashboard frontend em React que visualiza pontuações de prioridade por tipo de ativo, ajudando os usuários a decidir quais vulnerabilidades abordar primeiro.
 
-## Features
+## Funcionalidades
 
-- **Backend API**: RESTful API built with Flask and SQLAlchemy
-- **Data Processing**: Loads vulnerability data from JSON files into SQLite database
-- **Frontend Dashboard**: Interactive React app with charts and sortable tables
-- **Priority Scoring**: Visualizes asset prioritization based on vulnerability scores
-- **Real-time Updates**: Refresh data from the backend
+- **API Backend**: API RESTful construída com Flask e SQLAlchemy
+- **Processamento de Dados**: Carrega dados de vulnerabilidades de arquivos JSON para banco SQLite
+- **Dashboard Frontend**: Aplicação React interativa com gráficos e tabelas ordenáveis
+- **Pontuação de Prioridade**: Visualiza priorização de ativos baseada em pontuações de vulnerabilidades
+- **Atualizações em Tempo Real**: Atualiza dados do backend
 
-## Technologies
+## Tecnologias
 
 - **Backend**: Python 3.12, Flask, SQLAlchemy, SQLite
 - **Frontend**: React 19, Vite, Recharts, Axios
-- **Database**: SQLite (development) / PostgreSQL (production)
+- **Banco de Dados**: SQLite (desenvolvimento) / PostgreSQL (produção)
 
-## Prerequisites
+## Pré-requisitos
 
-- Python 3.12 or higher
-- Node.js 18 or higher
-- npm or yarn
+- Python 3.12 ou superior
+- Node.js 18 ou superior
+- npm ou yarn
 
-## Installation and Setup
+## Instalação e Configuração
 
-### 1. Clone the Repository
+### 1. Clonar o Repositório
 
 ```bash
-git clone https://github.com/RodrigoAlban/backendSGSeg.git
-cd backendSGSeg
+git clone https://github.com/RodrigoAlban/Hackathon-SBSeg-2025.git
+cd Hackathon-SBSeg-2025
 ```
 
-### 2. Backend Setup
+### 2. Configuração do Backend
 
-1. Create and activate a virtual environment:
+1. Criar e ativar ambiente virtual:
    ```bash
    python -m venv .venv
-   # On Windows:
+   # Windows:
    .venv\Scripts\activate
-   # On macOS/Linux:
+   # macOS/Linux:
    source .venv/bin/activate
    ```
 
-2. Install Python dependencies:
+2. Instalar dependências Python:
    ```bash
-   pip install -r requirements.txt
+   pip install -r backend/requirements.txt
    ```
 
-3. Load vulnerability data into the database:
+3. Carregar dados de vulnerabilidades no banco:
    ```bash
-   python load_data.py
+   python backend/load_data.py
    ```
 
-4. Run the Flask backend:
+4. Executar o backend Flask:
    ```bash
-   python app.py
+   python backend/app.py
    ```
-   The backend will be available at `http://127.0.0.1:5000`
+   O backend estará disponível em `http://127.0.0.1:5000`
 
-### 3. Frontend Setup
+### 3. Configuração do Frontend
 
-1. Navigate to the frontend directory:
+1. Navegar para o diretório frontend:
    ```bash
    cd frontend
    ```
 
-2. Install Node.js dependencies:
+2. Instalar dependências Node.js:
    ```bash
    npm install
    ```
 
-3. Start the development server:
+3. Iniciar servidor de desenvolvimento:
    ```bash
    npm run dev
    ```
-   The frontend will be available at `http://localhost:5173`
+   O frontend estará disponível em `http://localhost:5173`
 
-## Usage
+## Uso
 
-1. Ensure both backend and frontend are running
-2. Open your browser and go to `http://localhost:5173`
-3. The dashboard will display:
-   - Bar chart showing average priority scores by asset type
-   - Sortable table with asset details
-   - Refresh button to update data from the backend
+1. Certifique-se de que backend e frontend estão rodando
+2. Abra o navegador e acesse `http://localhost:5173`
+3. O dashboard exibirá:
+   - Gráfico de barras com pontuações médias de prioridade por tipo de ativo
+   - Tabela ordenável com detalhes dos ativos
+   - Botão de atualização para buscar dados do backend
 
-## API Endpoints
+## Endpoints da API
 
-### Assets
-- `GET /assets` - Get all assets ordered by priority score (descending)
-- `GET /assets/<id>` - Get specific asset with its vulnerabilities
+### Ativos
+- `GET /assets` - Obter todos os ativos ordenados por pontuação de prioridade (decrescente)
+- `GET /assets/<id>` - Obter ativo específico com suas vulnerabilidades
 
-### Vulnerabilities
-- `GET /vulnerabilities` - Get all vulnerabilities
-- `GET /vulnerabilities/<id>` - Get specific vulnerability by ID
+### Vulnerabilidades
+- `GET /vulnerabilities` - Obter todas as vulnerabilidades
+- `GET /vulnerabilities/<id>` - Obter vulnerabilidade específica por ID
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
-backendSGSeg/
-├── app.py                 # Flask application
-├── config.py             # Configuration settings
-├── models.py             # Database models
-├── load_data.py          # Data loading script
-├── requirements.txt      # Python dependencies
-├── data_JSON/            # Vulnerability data files
-├── frontend/             # React frontend
+Hackathon-SBSeg-2025/
+├── README.md
+├── backend/
+│   ├── app.py                 # Aplicação Flask
+│   ├── config.py             # Configurações
+│   ├── models.py             # Modelos do banco
+│   ├── load_data.py          # Script de carregamento de dados
+│   ├── requirements.txt      # Dependências Python
+│   └── data_JSON/            # Arquivos de dados de vulnerabilidades
+├── frontend/
 │   ├── src/
-│   │   ├── App.jsx       # Main dashboard component
-│   │   ├── App.css       # Dashboard styles
-│   │   └── main.jsx      # React entry point
-│   ├── package.json      # Node dependencies
-│   └── vite.config.js    # Vite configuration
+│   │   ├── App.jsx           # Componente principal do dashboard
+│   │   ├── index.css         # Estilos do dashboard
+│   │   └── main.jsx          # Ponto de entrada React
+│   ├── package.json          # Dependências Node
+│   └── vite.config.js        # Configuração Vite
 └── instance/
-    └── vulnerabilities.db # SQLite database
+    └── vulnerabilities.db    # Banco SQLite
 ```
 
-## Development
+## Desenvolvimento
 
-### Backend Development
-- The app uses Flask with SQLAlchemy for ORM
-- CORS is enabled for frontend communication
-- Database models are defined in `models.py`
+### Backend
+- Usa Flask com SQLAlchemy para ORM
+- CORS habilitado para comunicação com frontend
+- Modelos definidos em `models.py`
 
-### Frontend Development
-- Built with React and Vite for fast development
-- Uses Recharts for data visualization
-- Axios for API communication
-- Responsive design with CSS
+### Frontend
+- Construído com React e Vite para desenvolvimento rápido
+- Recharts para visualização de dados
+- Axios para comunicação com API
+- Design responsivo com CSS
 
-## Contributing
+## Contribuição
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test both backend and frontend
-5. Submit a pull request
+1. Fork o repositório
+2. Crie uma branch de funcionalidade
+3. Faça suas alterações
+4. Teste backend e frontend
+5. Envie um pull request
 
-## License
+## Licença
 
-This project is licensed under the MIT License.
+Este projeto está licenciado sob a Licença MIT.
